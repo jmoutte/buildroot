@@ -1,0 +1,5 @@
+config BR2_PACKAGE_FLUADPCM
+	bool "fluadpcm"
+	help
+	  Build gst-fluendo-adpcm plugin.
+

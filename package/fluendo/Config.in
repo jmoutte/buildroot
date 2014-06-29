@@ -1,0 +1,10 @@
+menu "Fluendo components"
+source "package/fluendo/flump3dec/Config.in"
+source "package/fluendo/fluilbc/Config.in"
+source "package/fluendo/fluadpcm/Config.in"
+source "package/fluendo/fluasfdemux/Config.in"
+source "package/fluendo/flussdemux/Config.in"
+source "package/fluendo/fluaacdec/Config.in"
+source "package/fluendo/fluwmadec/Config.in"
+source "package/fluendo/fluac3dec/Config.in"
+endmenu

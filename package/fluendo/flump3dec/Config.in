@@ -1,0 +1,5 @@
+config BR2_PACKAGE_FLUMP3DEC
+	bool "flump3dec"
+	help
+	  Build gst-fluendo-mp3 plugin.
+

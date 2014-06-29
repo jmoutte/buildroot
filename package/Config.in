@@ -160,6 +160,8 @@ source "package/unionfs/Config.in"
 source "package/xfsprogs/Config.in"
 endmenu
 
+source "package/fluendo/Config.in"
+
 menu "Games"
 source "package/doom-wad/Config.in"
 source "package/gnuchess/Config.in"

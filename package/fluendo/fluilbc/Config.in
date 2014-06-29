@@ -1,0 +1,5 @@
+config BR2_PACKAGE_FLUILBC
+	bool "fluilbc"
+	help
+	  Build gst-fluendo-ilbc plugin.
+

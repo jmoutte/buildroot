@@ -1,0 +1,5 @@
+config BR2_PACKAGE_FLUASFDEMUX
+	bool "fluasfdemux"
+	help
+	  Build gst-fluendo-asfdemux plugin.
+

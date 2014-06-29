@@ -1,0 +1,5 @@
+config BR2_PACKAGE_FLUAC3DEC
+	bool "fluac3dec"
+	help
+	  Build gst-fluendo-ac3dec plugin.
+

@@ -1,0 +1,5 @@
+config BR2_PACKAGE_FLUWMADEC
+	bool "fluwmadec"
+	help
+	  Build gst-fluendo-wmadec plugin.
+

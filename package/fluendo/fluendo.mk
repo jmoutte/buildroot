@@ -1,0 +1,1 @@
+include package/fluendo/*/*.mk
