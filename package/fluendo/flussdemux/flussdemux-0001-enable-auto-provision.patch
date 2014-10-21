@@ -1,0 +1,14 @@
+Index: gst-fluendo-ssdemux-0.10.25/src/sspk/Source/Platform/LinuxSample/DRMimpl/XDrmDiscretix/CXDrm.cpp
+===================================================================
+--- gst-fluendo-ssdemux-0.10.25-orig/src/sspk/Source/Platform/LinuxSample/DRMimpl/XDrmDiscretix/CXDrm.cpp	(revision 76220)
++++ gst-fluendo-ssdemux-0.10.25/src/sspk/Source/Platform/LinuxSample/DRMimpl/XDrmDiscretix/CXDrm.cpp	(working copy)
+@@ -29,6 +29,8 @@
+ /* Fluendo */
+ #include "gst-compat.h"
+ 
++#define DEBUG_DRM 1
++
+ #if defined (DEBUG_DRM)
+ #include "dxdrm/DxDrmDebugApi.h"
+ #endif
+
