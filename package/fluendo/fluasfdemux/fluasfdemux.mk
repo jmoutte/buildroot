@@ -3,7 +3,7 @@
 # fluasfdemux
 #
 #############################################################
-FLUASFDEMUX_VERSION = 0.10.73
+FLUASFDEMUX_VERSION = 0.10.74
 FLUASFDEMUX_SOURCE = gst-fluendo-asfdemux-$(FLUASFDEMUX_VERSION).tar.gz
 FLUASFDEMUX_SITE = ~
 FLUASFDEMUX_SITE_METHOD = file
