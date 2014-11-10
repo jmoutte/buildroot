@@ -73,6 +73,12 @@ config BR2_QT5WEBKIT_USE_DXDRM_EME
 	help
 	  Enable Discretix DRM Encrypted Media Extensions backend.
 
+config BR2_QT5WEBKIT_USE_MEDIA_SOURCE
+        bool "media-source"
+        default n
+        help
+          Enable Media Source Extensions.
+
 config BR2_PACKAGE_MINIBROWSER
 	bool "minibrowser"
 	depends on BR2_PACKAGE_QT5DECLARATIVE

@@ -85,6 +85,11 @@ QT5WEBKIT_CONFIG += \
 	WEBKIT_CONFIG+=encrypted_media_v2
 endif
 
+ifeq ($(BR2_QT5WEBKIT_USE_MEDIA_SOURCE),y)
+QT5WEBKIT_CONFIG += \
+	WEBKIT_CONFIG+=media_source
+endif
+
 ifeq ($(BR2_PACKAGE_LIBSOUP),y)
 QT5WEBKIT_CONFIG += \
 	WEBKIT_CONFIG+=use_soup \
