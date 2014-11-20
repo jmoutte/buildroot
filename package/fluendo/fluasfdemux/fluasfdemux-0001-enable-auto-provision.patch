@@ -1,11 +1,10 @@
-Index: gst-fluendo-asfdemux-0.10.74/src/fluasfdemux.h
-===================================================================
---- gst-fluendo-asfdemux-0.10.74-orig/src/fluasfdemux.h	(revision 76180)
-+++ gst-fluendo-asfdemux-0.10.74/src/fluasfdemux.h	(working copy)
-@@ -19,6 +19,7 @@
+diff -Naupr gst-fluendo-asfdemux-0.10.76/src/fluasfdemux.h gst-fluendo-asfdemux-0.10.76-copy/src/fluasfdemux.h
+--- gst-fluendo-asfdemux-0.10.76/src/fluasfdemux.h	2014-10-21 15:53:46.000000000 +0200
++++ gst-fluendo-asfdemux-0.10.76-copy/src/fluasfdemux.h	2014-11-20 19:35:13.421324901 +0100
+@@ -18,6 +18,7 @@
+ #endif
  #if BUILD_DX
  #include "dxdrm/DxDrmClient.h"
- #define MAX_CHALLENGE_LEN 40000
 +#define DEBUG_DRM 1
  #endif
  

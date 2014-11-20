@@ -3,7 +3,7 @@
 # flussdemux
 #
 #############################################################
-FLUSSDEMUX_VERSION = 0.10.25
+FLUSSDEMUX_VERSION = 0.10.27
 FLUSSDEMUX_SOURCE = gst-fluendo-ssdemux-$(FLUSSDEMUX_VERSION).tar.gz
 FLUSSDEMUX_SITE = ~
 FLUSSDEMUX_SITE_METHOD = file
