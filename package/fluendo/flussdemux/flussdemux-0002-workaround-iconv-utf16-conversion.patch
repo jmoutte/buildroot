@@ -1,0 +1,91 @@
+diff -Naupr gst-fluendo-ssdemux-0.10.27/src/flusstype.c gst-fluendo-ssdemux-0.10.27-patched/src/flusstype.c
+--- gst-fluendo-ssdemux-0.10.27/src/flusstype.c	2014-10-13 10:45:59.000000000 +0200
++++ gst-fluendo-ssdemux-0.10.27-patched/src/flusstype.c	2014-11-27 12:29:59.942134492 +0100
+@@ -12,9 +12,31 @@
+ #include "flusstype.h"
+ #include <string.h>
+ 
++GST_DEBUG_CATEGORY_EXTERN (flussdemux_debug);
++#define GST_CAT_DEFAULT flussdemux_debug
++
+ static GstStaticCaps flusstype_caps = GST_STATIC_CAPS (SMOOTHSTREAMING_MIME);
+ #define SMOOTHSTREAMING_CAPS (gst_static_caps_get(&flusstype_caps))
+ 
++static gchar *
++utf16_to_utf8 (const gchar *input, gsize length, gsize *wrote,
++    gboolean little_endian)
++{
++  gsize i = 0, j = 0;
++  gchar *result = g_malloc0 (length / 2 + 1);
++
++  while (i < length) {
++    result[j] = input [little_endian ? i : i + 1];
++    i += 2;
++    j++;
++  }
++
++  if (wrote)
++    *wrote = j;
++
++  return result;
++}
++
+ static void
+ flusstype_find (GstTypeFind * tf, gpointer unused)
+ {
+@@ -31,34 +53,44 @@ flusstype_find (GstTypeFind * tf, gpoint
+     length = 512;
+     
+   data = gst_type_find_peek (tf, 0, length);
+-  if (!data)
++  if (!data) {
++    GST_WARNING ("could not peek enough data");
+     return;
++  }
++
++  GST_MEMDUMP ("typefinding data: ", data, length);
+   
+   /* Check if this is UTF16 using BOM and convert */
+   if (data[0] == 0xff && data[1] == 0xfe) { /* UTF-16 LE */
++    GError *error = NULL;
+     gsize write;
+     input = g_convert ((const gchar *) data + 2, length - 2,
+-        "UTF-8", "UTF-16LE", NULL, &write, NULL);
++        "UTF-8", "UTF-16LE", NULL, &write, &error);
++    if (!input) {
++      GST_WARNING ("failed converting UTF16 LE: %s", error->message);
++      g_error_free (error);
++      input = utf16_to_utf8 ((const gchar *) data + 2, length -2, &write, TRUE);
++    }
+     length = write;
+-    if (!input)
+-      return;
+-    else
+-      length = write;
+   }
+   else if (data[0] == 0xfe && data[1] == 0xff) { /* UTF-16 BE */
++    GError *error = NULL;
+     gsize write;
+     input = g_convert ((const gchar *) data + 2, length - 2,
+-        "UTF-8", "UTF-16BE", NULL, &write, NULL);
++        "UTF-8", "UTF-16BE", NULL, &write, &error);
++    if (!input) {
++      GST_WARNING ("failed converting UTF16 BE: %s", error->message);
++      g_error_free (error);
++      input = utf16_to_utf8 ((const gchar *) data + 2, length -2, &write, FALSE);
++    }
+     length = write;
+-    if (!input)
+-      return;
+-    else
+-      length = write;
+   }
+   else {
+     input = g_strndup ((const gchar *) data, length);
+   }
+ 
++  GST_MEMDUMP ("after UTF-8 conversion:", input, length);
++
+   if (input && g_strstr_len (input, length, flusstype_tag)) {
+     gst_type_find_suggest (tf, GST_TYPE_FIND_MAXIMUM, SMOOTHSTREAMING_CAPS);
+   }
